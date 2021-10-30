@@ -1,4 +1,5 @@
 using AutoMapper;
+using BekeTanszekBistro.MenuBoard.Api.Helpers;
 using BekeTanszekBistro.MenuBoard.Api.Core.Repositories;
 using BekeTanszekBistro.MenuBoard.Api.Persistence;
 using BekeTanszekBistro.MenuBoard.Api.Persistence.Repositories;
@@ -24,6 +25,16 @@ namespace BekeTanszekBistro.MenuBoard.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy(Constants.DefaultCorsPolicy, builder =>
+                {
+                    builder.AllowAnyHeader();
+                    builder.AllowAnyOrigin();
+                    builder.WithMethods("POST", "GET", "DELETE", "PUT");
+                });
+            });
+
             services.AddControllers();
 
             services.AddAutoMapper();
@@ -54,7 +65,7 @@ namespace BekeTanszekBistro.MenuBoard.Api
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseCors(Constants.DefaultCorsPolicy);
 
             app.UseEndpoints(endpoints =>
                 endpoints.MapControllers());
