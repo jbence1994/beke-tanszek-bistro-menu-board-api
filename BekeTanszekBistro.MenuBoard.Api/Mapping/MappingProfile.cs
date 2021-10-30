@@ -17,6 +17,7 @@ namespace BekeTanszekBistro.MenuBoard.Api.Mapping
 
             // API resources to models
 
+            CreateMap<CreateMealRequestResource, Meal>();
             CreateMap<CreateTypeRequestResource, Type>();
         }
     }
