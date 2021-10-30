@@ -4,12 +4,15 @@ using AutoMapper;
 using BekeTanszekBistro.MenuBoard.Api.Controllers.Resources.Responses;
 using BekeTanszekBistro.MenuBoard.Api.Core.Models;
 using BekeTanszekBistro.MenuBoard.Api.Core.Repositories;
+using BekeTanszekBistro.MenuBoard.Api.Helpers;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BekeTanszekBistro.MenuBoard.Api.Controllers
 {
     [ApiController]
     [Route("/api/v1/[controller]/")]
+    [EnableCors(Constants.DefaultCorsPolicy)]
     public class TypesController : ControllerBase
     {
         private readonly ITypeRepository _typeRepository;
