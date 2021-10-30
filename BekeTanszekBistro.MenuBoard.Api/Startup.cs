@@ -1,4 +1,5 @@
 using AutoMapper;
+using BekeTanszekBistro.MenuBoard.Api.Core;
 using BekeTanszekBistro.MenuBoard.Api.Helpers;
 using BekeTanszekBistro.MenuBoard.Api.Core.Repositories;
 using BekeTanszekBistro.MenuBoard.Api.Persistence;
@@ -40,6 +41,8 @@ namespace BekeTanszekBistro.MenuBoard.Api
             services.AddAutoMapper();
 
             services.AddScoped<ITypeRepository, TypeRepository>();
+
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySQL(_configuration.GetConnectionString("Default")));

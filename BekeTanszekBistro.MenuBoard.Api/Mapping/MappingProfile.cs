@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BekeTanszekBistro.MenuBoard.Api.Controllers.Resources.Requests;
 using BekeTanszekBistro.MenuBoard.Api.Controllers.Resources.Responses;
 using BekeTanszekBistro.MenuBoard.Api.Core.Models;
 
@@ -16,6 +17,7 @@ namespace BekeTanszekBistro.MenuBoard.Api.Mapping
 
             // API resources to models
 
+            CreateMap<CreateTypeRequestResource, Type>();
         }
     }
 }

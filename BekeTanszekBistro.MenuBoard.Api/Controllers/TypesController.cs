@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
+using BekeTanszekBistro.MenuBoard.Api.Controllers.Resources.Requests;
 using BekeTanszekBistro.MenuBoard.Api.Controllers.Resources.Responses;
+using BekeTanszekBistro.MenuBoard.Api.Core;
 using BekeTanszekBistro.MenuBoard.Api.Core.Models;
 using BekeTanszekBistro.MenuBoard.Api.Core.Repositories;
 using BekeTanszekBistro.MenuBoard.Api.Helpers;
@@ -16,14 +18,17 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers
     public class TypesController : ControllerBase
     {
         private readonly ITypeRepository _typeRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
         public TypesController(
             ITypeRepository typeRepository,
+            IUnitOfWork unitOfWork,
             IMapper mapper
         )
         {
             _typeRepository = typeRepository;
+            _unitOfWork = unitOfWork;
             _mapper = mapper;
         }
 
@@ -47,6 +52,21 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers
                 _mapper.Map<IEnumerable<Type>, IEnumerable<GetTypesWithMealsResponseResource>>(types);
 
             return Ok(typeResources);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateType([FromBody] CreateTypeRequestResource createTypeResource)
+        {
+            var type = _mapper.Map<CreateTypeRequestResource, Type>(createTypeResource);
+
+            await _typeRepository.Add(type);
+            await _unitOfWork.CompleteAsync();
+
+            type = await _typeRepository.GetType(type.Id);
+
+            var typeResource = _mapper.Map<Type, GetTypeResponseResource>(type);
+
+            return Ok(typeResource);
         }
     }
 }

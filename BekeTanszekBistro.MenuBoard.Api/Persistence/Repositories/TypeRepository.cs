@@ -24,8 +24,17 @@ namespace BekeTanszekBistro.MenuBoard.Api.Persistence.Repositories
                     .ToListAsync();
             }
 
-            return await _context.Types
-                .ToListAsync();
+            return await _context.Types.ToListAsync();
+        }
+
+        public async Task<Type> GetType(int id)
+        {
+            return await _context.Types.SingleOrDefaultAsync(t => t.Id == id);
+        }
+
+        public async Task Add(Type type)
+        {
+            await _context.Types.AddAsync(type);
         }
     }
 }
