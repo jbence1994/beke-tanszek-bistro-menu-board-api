@@ -7,5 +7,7 @@ namespace BekeTanszekBistro.MenuBoard.Api.Core.Repositories
     public interface ITypeRepository
     {
         Task<IEnumerable<Type>> GetTypes(bool includeMeals = true);
+        Task<Type> GetType(int id);
+        Task Add(Type type);
     }
 }
