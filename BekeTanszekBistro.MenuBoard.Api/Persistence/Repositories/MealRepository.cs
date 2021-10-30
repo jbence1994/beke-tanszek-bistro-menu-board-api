@@ -16,7 +16,9 @@ namespace BekeTanszekBistro.MenuBoard.Api.Persistence.Repositories
 
         public async Task<Meal> GetMeal(int id)
         {
-            return await _context.Meals.SingleOrDefaultAsync(m => m.Id == id);
+            return await _context.Meals
+                .Include(m => m.Type)
+                .SingleOrDefaultAsync(m => m.Id == id);
         }
 
         public async Task Add(Meal meal)
