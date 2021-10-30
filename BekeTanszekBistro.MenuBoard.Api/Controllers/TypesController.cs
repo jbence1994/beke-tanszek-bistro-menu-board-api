@@ -27,10 +27,21 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> GetTypes()
         {
-            var types = await _typeRepository.GetTypes();
+            var types = await _typeRepository.GetTypes(includeMeals: false);
 
             var typeResources =
                 _mapper.Map<IEnumerable<Type>, IEnumerable<GetTypeResponseResource>>(types);
+
+            return Ok(typeResources);
+        }
+
+        [HttpGet("withMeals")]
+        public async Task<IActionResult> GetTypesWithMeals()
+        {
+            var types = await _typeRepository.GetTypes();
+
+            var typeResources =
+                _mapper.Map<IEnumerable<Type>, IEnumerable<GetTypesWithMealsResponseResource>>(types);
 
             return Ok(typeResources);
         }

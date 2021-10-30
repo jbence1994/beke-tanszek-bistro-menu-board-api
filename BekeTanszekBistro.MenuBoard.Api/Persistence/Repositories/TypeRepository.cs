@@ -15,9 +15,17 @@ namespace BekeTanszekBistro.MenuBoard.Api.Persistence.Repositories
             _context = context;
         }
 
-        public async Task<IEnumerable<Type>> GetTypes()
+        public async Task<IEnumerable<Type>> GetTypes(bool includeMeals = true)
         {
-            return await _context.Types.ToListAsync();
+            if (includeMeals)
+            {
+                return await _context.Types
+                    .Include(t => t.Meals)
+                    .ToListAsync();
+            }
+
+            return await _context.Types
+                .ToListAsync();
         }
     }
 }
