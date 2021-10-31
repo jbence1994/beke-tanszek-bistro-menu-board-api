@@ -59,5 +59,14 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers
 
             return Ok(dailyMenuResource);
         }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteDailyMenus()
+        {
+            _dailyMenuRepository.RemoveAll();
+            await _unitOfWork.CompleteAsync();
+
+            return Ok();
+        }
     }
 }
