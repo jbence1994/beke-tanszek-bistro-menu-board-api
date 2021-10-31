@@ -11,6 +11,7 @@ namespace BekeTanszekBistro.MenuBoard.Api.Mapping
         {
             // Models to API resources
 
+            CreateMap<DailyMenu, GetDailyMenuResponseResource>();
             CreateMap<Meal, GetMealResponseResource>();
             CreateMap<Meal, GetMealWithTypeResponseResource>();
             CreateMap<Type, GetTypeResponseResource>();
@@ -18,6 +19,7 @@ namespace BekeTanszekBistro.MenuBoard.Api.Mapping
 
             // API resources to models
 
+            CreateMap<CreateDailyMenuRequestResource, DailyMenu>();
             CreateMap<CreateMealRequestResource, Meal>();
             CreateMap<CreateTypeRequestResource, Type>();
         }
