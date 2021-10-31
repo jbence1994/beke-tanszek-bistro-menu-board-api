@@ -41,7 +41,7 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers
 
             meal = await _mealRepository.GetMeal(meal.Id);
 
-            var mealResource = _mapper.Map<Meal, GetMealResponseResource>(meal);
+            var mealResource = _mapper.Map<Meal, GetMealWithTypeResponseResource>(meal);
 
             return Ok(mealResource);
         }
