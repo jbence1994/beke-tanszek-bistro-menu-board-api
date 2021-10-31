@@ -55,7 +55,7 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers
             await _dailyMenuRepository.Add(dailyMenu);
             await _unitOfWork.CompleteAsync();
 
-            dailyMenu = await _dailyMenuRepository.GetDailyMenu(dailyMenu.Date);
+            dailyMenu = await _dailyMenuRepository.GetDailyMenu(dailyMenu.Id);
 
             var dailyMenuResource = _mapper.Map<DailyMenu, GetDailyMenuResponseResource>(dailyMenu);
 

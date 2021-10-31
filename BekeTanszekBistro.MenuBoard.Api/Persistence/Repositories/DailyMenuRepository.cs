@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using BekeTanszekBistro.MenuBoard.Api.Core.Models;
 using BekeTanszekBistro.MenuBoard.Api.Core.Repositories;
@@ -24,12 +23,12 @@ namespace BekeTanszekBistro.MenuBoard.Api.Persistence.Repositories
                 .ToListAsync();
         }
 
-        public async Task<DailyMenu> GetDailyMenu(DateTime date)
+        public async Task<DailyMenu> GetDailyMenu(int id)
         {
             return await _context.DailyMenus
                 .Include(m => m.Meal)
                 .ThenInclude(m => m.Type)
-                .SingleOrDefaultAsync(m => m.Date == date);
+                .SingleOrDefaultAsync(m => m.Id == id);
         }
 
         public async Task Add(DailyMenu dailyMenu)

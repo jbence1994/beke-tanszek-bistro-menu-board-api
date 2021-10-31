@@ -8,7 +8,7 @@ namespace BekeTanszekBistro.MenuBoard.Api.Core.Repositories
     public interface IDailyMenuRepository
     {
         Task<IEnumerable<DailyMenu>> GetDailyMenus();
-        Task<DailyMenu> GetDailyMenu(DateTime date);
+        Task<DailyMenu> GetDailyMenu(int id);
         Task Add(DailyMenu dailyMenu);
     }
 }
