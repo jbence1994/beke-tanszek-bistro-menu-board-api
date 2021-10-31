@@ -21,7 +21,6 @@ namespace BekeTanszekBistro.MenuBoard.Api.Mapping
 
             CreateMap<CreateDailyMenuRequestResource, DailyMenu>();
             CreateMap<CreateMealRequestResource, Meal>();
-            CreateMap<CreateTypeRequestResource, Type>();
         }
     }
 }
