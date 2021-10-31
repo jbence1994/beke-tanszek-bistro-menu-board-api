@@ -16,24 +16,6 @@ namespace BekeTanszekBistro.MenuBoard.Api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("BekeTanszekBistro.MenuBoard.Api.Core.Models.DailyMenu", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    b.Property<int>("MealId")
-                        .HasColumnType("int")
-                        .HasColumnName("meal_id");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("MealId");
-
-                    b.ToTable("daily_menus");
-                });
-
             modelBuilder.Entity("BekeTanszekBistro.MenuBoard.Api.Core.Models.Meal", b =>
                 {
                     b.Property<int>("Id")
@@ -74,17 +56,6 @@ namespace BekeTanszekBistro.MenuBoard.Api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("types");
-                });
-
-            modelBuilder.Entity("BekeTanszekBistro.MenuBoard.Api.Core.Models.DailyMenu", b =>
-                {
-                    b.HasOne("BekeTanszekBistro.MenuBoard.Api.Core.Models.Meal", "Meal")
-                        .WithMany()
-                        .HasForeignKey("MealId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Meal");
                 });
 
             modelBuilder.Entity("BekeTanszekBistro.MenuBoard.Api.Core.Models.Meal", b =>

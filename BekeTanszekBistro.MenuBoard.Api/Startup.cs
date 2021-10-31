@@ -40,7 +40,6 @@ namespace BekeTanszekBistro.MenuBoard.Api
 
             services.AddAutoMapper();
 
-            services.AddScoped<IDailyMenuRepository, DailyMenuRepository>();
             services.AddScoped<IMealRepository, MealRepository>();
             services.AddScoped<ITypeRepository, TypeRepository>();
 
