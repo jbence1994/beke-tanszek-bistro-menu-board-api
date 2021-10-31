@@ -9,6 +9,7 @@ namespace BekeTanszekBistro.MenuBoard.Api.Core.Repositories
         Task<IEnumerable<DailyMenu>> GetDailyMenus();
         Task<DailyMenu> GetDailyMenu(int id);
         Task Add(DailyMenu dailyMenu);
+        void Remove(DailyMenu dailyMenu);
         void RemoveAll();
     }
 }

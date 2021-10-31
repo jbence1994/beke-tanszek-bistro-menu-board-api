@@ -36,6 +36,11 @@ namespace BekeTanszekBistro.MenuBoard.Api.Persistence.Repositories
             await _context.DailyMenus.AddAsync(dailyMenu);
         }
 
+        public void Remove(DailyMenu dailyMenu)
+        {
+            _context.DailyMenus.Remove(dailyMenu);
+        }
+
         public void RemoveAll()
         {
             _context.DailyMenus.RemoveRange(_context.DailyMenus);
