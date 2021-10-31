@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
 using MySql.EntityFrameworkCore.Metadata;
 
 namespace BekeTanszekBistro.MenuBoard.Api.Migrations
@@ -14,7 +13,6 @@ namespace BekeTanszekBistro.MenuBoard.Api.Migrations
                 {
                     id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
-                    date = table.Column<DateTime>(type: "datetime", nullable: false),
                     meal_id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>

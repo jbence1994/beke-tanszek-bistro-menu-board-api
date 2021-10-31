@@ -16,10 +16,6 @@ namespace BekeTanszekBistro.MenuBoard.Api.Persistence.EntityConfigurations
                 .HasColumnName("id");
 
             builder
-                .Property(m => m.Date)
-                .HasColumnName("date");
-
-            builder
                 .Property(m => m.MealId)
                 .HasColumnName("meal_id");
         }

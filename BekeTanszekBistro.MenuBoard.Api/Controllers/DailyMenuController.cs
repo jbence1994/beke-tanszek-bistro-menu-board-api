@@ -50,7 +50,6 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers
         )
         {
             var dailyMenu = _mapper.Map<CreateDailyMenuRequestResource, DailyMenu>(createDailyMenuResource);
-            dailyMenu.Date = DateTime.Now;
 
             await _dailyMenuRepository.Add(dailyMenu);
             await _unitOfWork.CompleteAsync();
