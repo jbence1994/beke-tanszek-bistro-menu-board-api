@@ -57,5 +57,27 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers
 
             return Ok(mealResource);
         }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> DeleteMeal(int id)
+        {
+            var meal = await _mealRepository.GetMeal(id);
+
+            _mealRepository.Remove(meal);
+            await _unitOfWork.CompleteAsync();
+
+            var mealResource = _mapper.Map<Meal, GetMealWithTypeResponseResource>(meal);
+
+            return Ok(mealResource);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteMeals()
+        {
+            _mealRepository.RemoveAll();
+            await _unitOfWork.CompleteAsync();
+
+            return Ok();
+        }
     }
 }

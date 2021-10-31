@@ -9,5 +9,7 @@ namespace BekeTanszekBistro.MenuBoard.Api.Core.Repositories
         Task<IEnumerable<Meal>> GetMeals();
         Task<Meal> GetMeal(int id);
         Task Add(Meal meal);
+        void Remove(Meal meal);
+        void RemoveAll();
     }
 }
