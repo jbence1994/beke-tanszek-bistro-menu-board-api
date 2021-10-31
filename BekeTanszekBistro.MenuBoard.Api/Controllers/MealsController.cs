@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BekeTanszekBistro.MenuBoard.Api.Controllers
 {
     [ApiController]
-    [Route("/apI/v1/meals")]
+    [Route("/api/v1/[controller]/")]
     [EnableCors(Constants.DefaultCorsPolicy)]
     public class MealsController : ControllerBase
     {
