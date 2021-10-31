@@ -32,7 +32,7 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateType([FromBody] CreateMealRequestResource createMealResource)
+        public async Task<IActionResult> CreateMeal([FromBody] CreateMealRequestResource createMealResource)
         {
             var meal = _mapper.Map<CreateMealRequestResource, Meal>(createMealResource);
 
