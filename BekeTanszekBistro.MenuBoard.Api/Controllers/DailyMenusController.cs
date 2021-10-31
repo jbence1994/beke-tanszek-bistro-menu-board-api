@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using BekeTanszekBistro.MenuBoard.Api.Controllers.Resources.Requests;
@@ -16,13 +15,13 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers
     [ApiController]
     [Route("/api/v1/[controller]/")]
     [EnableCors(Constants.DefaultCorsPolicy)]
-    public class DailyMenuController : ControllerBase
+    public class DailyMenusController : ControllerBase
     {
         private readonly IDailyMenuRepository _dailyMenuRepository;
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
-        public DailyMenuController(
+        public DailyMenusController(
             IDailyMenuRepository dailyMenuRepository,
             IUnitOfWork unitOfWork,
             IMapper mapper
