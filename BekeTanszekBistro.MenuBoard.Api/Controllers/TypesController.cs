@@ -49,7 +49,7 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers
             var types = await _typeRepository.GetTypes();
 
             var typeResources =
-                _mapper.Map<IEnumerable<Type>, IEnumerable<GetTypesWithMealsResponseResource>>(types);
+                _mapper.Map<IEnumerable<Type>, IEnumerable<GetTypeWithMealsResponseResource>>(types);
 
             return Ok(typeResources);
         }
