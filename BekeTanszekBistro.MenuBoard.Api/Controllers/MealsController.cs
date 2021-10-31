@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using BekeTanszekBistro.MenuBoard.Api.Controllers.Resources.Requests;
 using BekeTanszekBistro.MenuBoard.Api.Controllers.Resources.Responses;
@@ -12,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace BekeTanszekBistro.MenuBoard.Api.Controllers
 {
     [ApiController]
-    [Route("/apI/v1/meals")]
+    [Route("/api/v1/[controller]/")]
     [EnableCors(Constants.DefaultCorsPolicy)]
     public class MealsController : ControllerBase
     {
@@ -31,8 +32,19 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers
             _mapper = mapper;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetMeals()
+        {
+            var meals = await _mealRepository.GetMeals();
+
+            var mealResources =
+                _mapper.Map<IEnumerable<Meal>, IEnumerable<GetMealResponseResource>>(meals);
+
+            return Ok(mealResources);
+        }
+
         [HttpPost]
-        public async Task<IActionResult> CreateType([FromBody] CreateMealRequestResource createMealResource)
+        public async Task<IActionResult> CreateMeal([FromBody] CreateMealRequestResource createMealResource)
         {
             var meal = _mapper.Map<CreateMealRequestResource, Meal>(createMealResource);
 
@@ -41,9 +53,31 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers
 
             meal = await _mealRepository.GetMeal(meal.Id);
 
-            var mealResource = _mapper.Map<Meal, GetMealResponseResource>(meal);
+            var mealResource = _mapper.Map<Meal, GetMealWithTypeResponseResource>(meal);
 
             return Ok(mealResource);
+        }
+
+        [HttpDelete("{id:int}")]
+        public async Task<IActionResult> DeleteMeal(int id)
+        {
+            var meal = await _mealRepository.GetMeal(id);
+
+            _mealRepository.Remove(meal);
+            await _unitOfWork.CompleteAsync();
+
+            var mealResource = _mapper.Map<Meal, GetMealWithTypeResponseResource>(meal);
+
+            return Ok(mealResource);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteMeals()
+        {
+            _mealRepository.RemoveAll();
+            await _unitOfWork.CompleteAsync();
+
+            return Ok();
         }
     }
 }

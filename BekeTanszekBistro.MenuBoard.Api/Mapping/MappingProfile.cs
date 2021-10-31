@@ -12,13 +12,13 @@ namespace BekeTanszekBistro.MenuBoard.Api.Mapping
             // Models to API resources
 
             CreateMap<Meal, GetMealResponseResource>();
+            CreateMap<Meal, GetMealWithTypeResponseResource>();
             CreateMap<Type, GetTypeResponseResource>();
-            CreateMap<Type, GetTypesWithMealsResponseResource>();
+            CreateMap<Type, GetTypeWithMealsResponseResource>();
 
             // API resources to models
 
             CreateMap<CreateMealRequestResource, Meal>();
-            CreateMap<CreateTypeRequestResource, Type>();
         }
     }
 }
