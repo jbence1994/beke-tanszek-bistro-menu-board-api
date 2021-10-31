@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using BekeTanszekBistro.MenuBoard.Api.Controllers.Resources.Requests;
 using BekeTanszekBistro.MenuBoard.Api.Controllers.Resources.Responses;
@@ -29,6 +30,17 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers
             _mealRepository = mealRepository;
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetMeals()
+        {
+            var meals = await _mealRepository.GetMeals();
+
+            var mealResources =
+                _mapper.Map<IEnumerable<Meal>, IEnumerable<GetMealResponseResource>>(meals);
+
+            return Ok(mealResources);
         }
 
         [HttpPost]
