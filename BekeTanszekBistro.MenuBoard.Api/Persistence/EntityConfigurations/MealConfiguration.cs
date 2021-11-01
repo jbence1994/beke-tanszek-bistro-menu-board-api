@@ -22,6 +22,11 @@ namespace BekeTanszekBistro.MenuBoard.Api.Persistence.EntityConfigurations
                 .IsRequired();
 
             builder
+                .Property(m => m.Price)
+                .HasColumnName("price")
+                .IsRequired();
+
+            builder
                 .Property(m => m.TypeId)
                 .HasColumnName("type_id");
         }
