@@ -65,8 +65,6 @@ namespace BekeTanszekBistro.MenuBoard.Api
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "BekeTanszekBistro.MenuBoard.Api v1"));
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
             app.UseCors(Constants.DefaultCorsPolicy);
