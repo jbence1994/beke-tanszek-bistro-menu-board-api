@@ -1,10 +1,8 @@
 ﻿namespace BekeTanszekBistro.MenuBoard.Api.Controllers.Resources.Responses
 {
-    public class GetMealWithTypeResponseResource
+    public class GetCategoryResponseResource
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int Price { get; set; }
-        public GetTypeResponseResource Type { get; set; }
     }
 }

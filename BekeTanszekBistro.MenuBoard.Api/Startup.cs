@@ -40,16 +40,16 @@ namespace BekeTanszekBistro.MenuBoard.Api
 
             services.AddAutoMapper();
 
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IMealRepository, MealRepository>();
-            services.AddScoped<ITypeRepository, TypeRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseMySQL(_configuration.GetConnectionString("Default")));
 
-            services.AddSwaggerGen(c =>
-                c.SwaggerDoc("v1", new OpenApiInfo {Title = "BekeTanszekBistro.MenuBoard.Api", Version = "v1"}));
+            services.AddSwaggerGen(options =>
+                options.SwaggerDoc("v1", new OpenApiInfo {Title = "BekeTanszekBistro.MenuBoard.Api", Version = "v1"}));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

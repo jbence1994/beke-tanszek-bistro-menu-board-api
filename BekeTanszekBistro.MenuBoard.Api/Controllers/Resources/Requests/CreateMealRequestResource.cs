@@ -12,6 +12,6 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers.Resources.Requests
         public int Price { get; set; }
 
         [Required]
-        public int TypeId { get; set; }
+        public int CategoryId { get; set; }
     }
 }

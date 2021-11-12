@@ -7,7 +7,7 @@ namespace BekeTanszekBistro.MenuBoard.Api.Persistence
     public class ApplicationDbContext : DbContext
     {
         public DbSet<Meal> Meals { get; set; }
-        public DbSet<Type> Types { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -16,8 +16,8 @@ namespace BekeTanszekBistro.MenuBoard.Api.Persistence
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.ApplyConfiguration(new CategoryConfiguration());
             modelBuilder.ApplyConfiguration(new MealConfiguration());
-            modelBuilder.ApplyConfiguration(new TypeConfiguration());
         }
     }
 }

@@ -4,8 +4,8 @@ using  BekeTanszekBistro.MenuBoard.Api.Core.Models;
 
 namespace BekeTanszekBistro.MenuBoard.Api.Core.Repositories
 {
-    public interface ITypeRepository
+    public interface ICategoryRepository
     {
-        Task<IEnumerable<Type>> GetTypes(bool includeMeals = true);
+        Task<IEnumerable<Category>> GetCategories(bool includeMeals = true);
     }
 }

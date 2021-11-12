@@ -3,13 +3,13 @@ using System.Collections.ObjectModel;
 
 namespace BekeTanszekBistro.MenuBoard.Api.Core.Models
 {
-    public class Type
+    public class Category
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public ICollection<Meal> Meals { get; set; }
 
-        public Type()
+        public Category()
         {
             Meals = new Collection<Meal>();
         }

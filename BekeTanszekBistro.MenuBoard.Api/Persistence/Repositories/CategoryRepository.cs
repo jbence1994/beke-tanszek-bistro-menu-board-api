@@ -6,25 +6,25 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BekeTanszekBistro.MenuBoard.Api.Persistence.Repositories
 {
-    public class TypeRepository : ITypeRepository
+    public class CategoryRepository : ICategoryRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public TypeRepository(ApplicationDbContext context)
+        public CategoryRepository(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<Type>> GetTypes(bool includeMeals = true)
+        public async Task<IEnumerable<Category>> GetCategories(bool includeMeals = true)
         {
             if (includeMeals)
             {
-                return await _context.Types
-                    .Include(t => t.Meals)
+                return await _context.Categories
+                    .Include(category => category.Meals)
                     .ToListAsync();
             }
 
-            return await _context.Types.ToListAsync();
+            return await _context.Categories.ToListAsync();
         }
     }
 }

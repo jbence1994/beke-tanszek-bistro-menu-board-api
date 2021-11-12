@@ -8,8 +8,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BekeTanszekBistro.MenuBoard.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20211030105759_AddMealsTable")]
-    partial class AddMealsTable
+    [Migration("20211112173732_AddCategoriesAndMealsTables")]
+    partial class AddCategoriesAndMealsTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -18,7 +18,7 @@ namespace BekeTanszekBistro.MenuBoard.Api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("BekeTanszekBistro.MenuBoard.Api.Core.Models.Meal", b =>
+            modelBuilder.Entity("BekeTanszekBistro.MenuBoard.Api.Core.Models.Category", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,47 +31,51 @@ namespace BekeTanszekBistro.MenuBoard.Api.Migrations
                         .HasColumnType("varchar(255)")
                         .HasColumnName("name");
 
-                    b.Property<int>("TypeId")
+                    b.HasKey("Id");
+
+                    b.ToTable("categories");
+                });
+
+            modelBuilder.Entity("BekeTanszekBistro.MenuBoard.Api.Core.Models.Meal", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .HasColumnName("type_id");
+                        .HasColumnName("id");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int")
+                        .HasColumnName("category_id");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("varchar(255)")
+                        .HasColumnName("name");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int")
+                        .HasColumnName("price");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TypeId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("meals");
                 });
 
-            modelBuilder.Entity("BekeTanszekBistro.MenuBoard.Api.Core.Models.Type", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("id");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("varchar(255)")
-                        .HasColumnName("name");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("types");
-                });
-
             modelBuilder.Entity("BekeTanszekBistro.MenuBoard.Api.Core.Models.Meal", b =>
                 {
-                    b.HasOne("BekeTanszekBistro.MenuBoard.Api.Core.Models.Type", "Type")
+                    b.HasOne("BekeTanszekBistro.MenuBoard.Api.Core.Models.Category", "Category")
                         .WithMany("Meals")
-                        .HasForeignKey("TypeId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Type");
+                    b.Navigation("Category");
                 });
 
-            modelBuilder.Entity("BekeTanszekBistro.MenuBoard.Api.Core.Models.Type", b =>
+            modelBuilder.Entity("BekeTanszekBistro.MenuBoard.Api.Core.Models.Category", b =>
                 {
                     b.Navigation("Meals");
                 });
