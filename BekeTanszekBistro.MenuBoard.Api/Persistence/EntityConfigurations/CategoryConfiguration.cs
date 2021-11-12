@@ -4,19 +4,19 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace BekeTanszekBistro.MenuBoard.Api.Persistence.EntityConfigurations
 {
-    public class TypeConfiguration : IEntityTypeConfiguration<Type>
+    public class CategoryConfiguration : IEntityTypeConfiguration<Category>
     {
-        public void Configure(EntityTypeBuilder<Type> builder)
+        public void Configure(EntityTypeBuilder<Category> builder)
         {
             builder
-                .ToTable("types");
+                .ToTable("categories");
 
             builder
-                .Property(t => t.Id)
+                .Property(category => category.Id)
                 .HasColumnName("id");
 
             builder
-                .Property(t => t.Name)
+                .Property(category => category.Name)
                 .HasColumnName("name")
                 .HasMaxLength(255)
                 .IsRequired();

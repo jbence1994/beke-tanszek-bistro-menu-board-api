@@ -27,8 +27,8 @@ namespace BekeTanszekBistro.MenuBoard.Api.Persistence.EntityConfigurations
                 .IsRequired();
 
             builder
-                .Property(meal => meal.TypeId)
-                .HasColumnName("type_id");
+                .Property(meal => meal.CategoryId)
+                .HasColumnName("category_id");
         }
     }
 }

@@ -40,8 +40,8 @@ namespace BekeTanszekBistro.MenuBoard.Api
 
             services.AddAutoMapper();
 
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IMealRepository, MealRepository>();
-            services.AddScoped<ITypeRepository, TypeRepository>();
 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 

@@ -53,7 +53,7 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers
 
             meal = await _mealRepository.GetMeal(meal.Id);
 
-            var mealResource = _mapper.Map<Meal, GetMealWithTypeResponseResource>(meal);
+            var mealResource = _mapper.Map<Meal, GetMealWithCategoryResponseResource>(meal);
 
             return Ok(mealResource);
         }
@@ -66,7 +66,7 @@ namespace BekeTanszekBistro.MenuBoard.Api.Controllers
             _mealRepository.Remove(meal);
             await _unitOfWork.CompleteAsync();
 
-            var mealResource = _mapper.Map<Meal, GetMealWithTypeResponseResource>(meal);
+            var mealResource = _mapper.Map<Meal, GetMealWithCategoryResponseResource>(meal);
 
             return Ok(mealResource);
         }
