@@ -12,22 +12,22 @@ namespace BekeTanszekBistro.MenuBoard.Api.Persistence.EntityConfigurations
                 .ToTable("meals");
 
             builder
-                .Property(m => m.Id)
+                .Property(meal => meal.Id)
                 .HasColumnName("id");
 
             builder
-                .Property(m => m.Name)
+                .Property(meal => meal.Name)
                 .HasColumnName("name")
                 .HasMaxLength(255)
                 .IsRequired();
 
             builder
-                .Property(m => m.Price)
+                .Property(meal => meal.Price)
                 .HasColumnName("price")
                 .IsRequired();
 
             builder
-                .Property(m => m.TypeId)
+                .Property(meal => meal.TypeId)
                 .HasColumnName("type_id");
         }
     }

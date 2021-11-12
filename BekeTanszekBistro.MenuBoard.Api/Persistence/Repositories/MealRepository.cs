@@ -23,8 +23,8 @@ namespace BekeTanszekBistro.MenuBoard.Api.Persistence.Repositories
         public async Task<Meal> GetMeal(int id)
         {
             return await _context.Meals
-                .Include(m => m.Type)
-                .SingleOrDefaultAsync(m => m.Id == id);
+                .Include(meal => meal.Type)
+                .SingleOrDefaultAsync(meal => meal.Id == id);
         }
 
         public async Task Add(Meal meal)
